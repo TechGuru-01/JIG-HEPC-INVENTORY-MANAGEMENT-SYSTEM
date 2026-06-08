@@ -8,6 +8,7 @@ A professional, full-stack inventory management system developed as an internshi
 * User Transaction Logging & Transparency: Features a dedicated user-side interface that records personnel identity, item withdrawal timestamps, and the specific quantity taken, updating stock levels in real time while broadcasting the latest actions to the admin panel.
 * Comprehensive Admin Dashboard: Provides a centralized administrative interface to oversee user accounts, manage personnel roles, review live activity feeds, and maintain absolute operational visibility.
 * Intelligent Inventory Alerts: Features real-time visual threshold triggers that display immediate low-stock notifications on the primary dashboard when an item's volume drops below safe levels.
+* One-Click Purchase Requests: Enables administrators to instantly generate formal purchase requests for low-stock items with a single click, automating the procurement drafting process directly from dashboard threshold alerts.
 * Automated Data Purging & Retention: Configured with automated data maintenance logic that safely purges historical log data up to 10 years old, keeping the active database lightweight and operationally efficient.
 * On-Demand Stock Printing: Supports rapid report compilation, allowing administrators to generate and print formatted documents of the latest inventory stock levels instantly.
 * Performance Pagination & Archiving: Engineered database pagination and structured layout frameworks optimized to handle extensive tracking logs exceeding 100,000 rows without application lag.
@@ -23,11 +24,11 @@ A professional, full-stack inventory management system developed as an internshi
 1. Administrative Setup: Administrators add items to the warehouse catalog, which automatically assigns a unique UUID and generates a corresponding QR code.
 2. User Scan & Identification: When retrieving material from production stock, the user scans the physical item's QR code.
 3. Allocation Entry: The user interface prompts for entry validation, registering who withdrew the item and the exact quantity removed.
-4. Administrative Oversight: The action is immediately broadcasted to the administrator panel's activity stream, while low-stock metrics trigger visual warning states on the main dashboard if applicable.
+4. Administrative Oversight & Procurement: The action is immediately broadcasted to the administrator panel's activity stream. If an item drops below safety margins, visual warning states trigger on the dashboard, allowing the admin to generate a procurement purchase request in a single click.
 5. Database Synchronization: The backend decrements inventory stock counts, registers a permanent entry into the transaction log tables, and systematically tags aging records for the 10-year purging cycle.
 
 ## Database Architecture & Scaling
-The underlying MySQL schema is built to prioritize fast indexing and data integrity across inventory catalogs and user transaction tables. To manage high rows-per-table volume safely, the system utilizes optimized offset pagination and a 10-year data retention/purging routine that eliminates obsolete database bloat and limits server load during automated report generation and real-time dashboard updates.
+The underlying MySQL schema is built to prioritize fast indexing and data integrity across inventory catalogs, purchase logs, and user transaction tables. To manage high rows-per-table volume safely, the system utilizes optimized offset pagination and a 10-year data retention/purging routine that eliminates obsolete database bloat and limits server load during automated report generation, procurement compilation, and real-time dashboard updates.
 
 ## Local Installation & Setup
 1. Clone this repository into your local server environment.
